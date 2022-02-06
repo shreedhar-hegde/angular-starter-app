@@ -1,1 +1,59 @@
-<p>signup works!</p>
+<div class="form-container">
+  <div class="form">
+    <h2>Signup</h2>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+  
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input matInput #input formControlName="firstName">
+          
+        </mat-form-field>
+      </div>
+     
+  
+      <div>
+        <mat-form-field  appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input matInput #input  formControlName="lastName">
+        
+        </mat-form-field>
+    
+      </div>
+      
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="pat@example.com" required formControlName="email">
+          <mat-error *ngIf="signupForm.get('email')?.hasError('required')">Email is required</mat-error>
+          <mat-error *ngIf="!signupForm.get('email')?.hasError('required') && signupForm.get('email')?.invalid">Invalid Email</mat-error>
+        </mat-form-field>
+      </div>
+     
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+  
+    
+  
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+       
+    </form>
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+  </div>
+  
+</div>
